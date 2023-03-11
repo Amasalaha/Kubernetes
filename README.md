@@ -1,5 +1,6 @@
-# Kubernetes </a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer">
-<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/>
+<details>
+ <summary><h3></a> <a href="https://kubernetes.io" target="_blank" rel="noreferrer">
+<img src="https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg" alt="kubernetes" width="40" height="40"/></h3></summary>
 
 
 Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, 
