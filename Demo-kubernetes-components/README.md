@@ -1,4 +1,6 @@
-Demo Report 
+<details>
+ <summary><h3> Demo Report </h3></summary>
+ 
 ### Deploying MongoDB and Mongo Express
 
 ### MongoDB is a NoSQL document database that is widely used in modern applications.
