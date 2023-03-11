@@ -1,4 +1,6 @@
-# Kubernetes YAML Configuration File
+<details>
+ <summary><h3></a> Kubernetes YAML Configuration File </h3></summary>
+
 Kubernetes is an open-source container orchestration platform that allows you to deploy, manage, and scale containerized applications. 
 Kubernetes uses YAML configuration files to define the desired state of your application. 
 In this report, we will explore the key components of a Kubernetes YAML configuration file, including metadata, specification, and status. 
