@@ -1,72 +1,75 @@
 <details>
- <summary><h3></a> <a href="https://helm.sh/" target="_blank" rel="noreferrer">
-<img src="https://cncf-branding.netlify.app/img/projects/helm/horizontal/color/helm-horizontal-color.png" alt="helm" width="100" height="100"/></h3></summary>
-Helm is a popular package manager for Kubernetes, it simplifies the installation and management of Kubernetes applications.
-It has become a crucial tool for DevOps engineers, Kubernetes administrators and developers as it allows them to define, 
-install and manage their applications using a single file called a Helm chart. This report will provide an overview of Helm, 
-including its package manager and chart structure, as well as its templating engine, use cases, and values injection into template files. 
-Additionally, it will discuss the Tiller release management system that was present in Helm version 2.
+ <summary><h3> Demo Report :  </h3></summary>
 
-#### Package Manager and Helm Charts:
-Helm is a package manager for Kubernetes, similar to apt for Debian and Ubuntu, yum for CentOS and Fedora, and Homebrew for macOS. 
-It allows users to define, install, and upgrade their Kubernetes applications in a simple and streamlined way.
+Helm is a popular package manager for Kubernetes, which makes it easy to install, manage, and upgrade complex applications on Kubernetes clusters. 
+In this demo report, we will demonstrate how to use Helm to deploy and manage a sample application on a Kubernetes cluster.
 
-Helm charts are the packaged form of Kubernetes applications that can be installed and deployed with Helm. 
-A chart is a collection of files that describe a related set of Kubernetes resources, including deployments, services, ingress rules, and more.
+#### Prerequisites
+Before we begin, make sure you have the following tools installed:
 
-#### Templating Engine:
-One of the most powerful features of Helm is its templating engine. The templating engine allows users to define variables that can be used to parameterize a chart. 
-These variables can be used to create multiple versions of the same chart, customized for different environments.
+- Kubernetes cluster
+- Helm
+We assume that you already have a running Kubernetes cluster and Helm installed on your system.
 
-For example, you can define variables for environment-specific values, such as the number of replicas for a deployment, 
-or the size of a persistent volume claim. When the chart is installed, the variables are replaced with their corresponding values,
-making it easy to deploy the same application to multiple environments with different configurations.
+#### Demo
+For this demo, we will deploy the popular "WordPress" application using Helm. WordPress is a content management system that allows users to create and manage websites. To deploy WordPress using Helm, we need to follow these steps:
 
-- Use Cases for Helm:
+Add the official WordPress chart repository to Helm:
 
-Helm can be used in a variety of scenarios, including:
-
-1. Application deployment: Helm makes it easy to deploy and manage Kubernetes applications, 
-allowing DevOps engineers to focus on their core tasks rather than spending time on application deployment.
-
-2. Continuous Integration/Continuous Deployment (CI/CD): Helm can be integrated into CI/CD pipelines,
-allowing for automated testing and deployment of Kubernetes applications.
-
-3. Infrastructure as Code: Helm allows users to define their infrastructure as code, enabling version control, collaboration, and auditability.
-
-#### Helm Chart Structure:
-A Helm chart is made up of several components, including:
-
-- Chart.yaml: This file contains metadata about the chart, including its name, version, and description.
-
-- Values.yaml: This file contains the default values for the chart's variables.
-
-- templates/: This directory contains the template files that are used to generate the Kubernetes resources.
-
-- charts/: This directory can be used to include other charts as dependencies.
-
-#### Values Injection into Template Files:
-Helm's templating engine allows users to define variables that can be used to parameterize a chart. 
-These variables can be used in the template files to generate Kubernetes resources.
-
-For example, if you have a variable called "replicas" defined in your values.yaml file, you can use it in the template file for a deployment like this:
 <pre class="code-block">
-yaml
+bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+</pre>
 
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: myapp
-spec:
-  replicas: {{ .Values.replicas }}
-  template:
-    ...
- </pre>
-When the chart is installed, Helm will replace {{ .Values.replicas }} with the value defined in values.yaml.
+Update the local Helm chart repository cache:
 
-#### Release Management / Tiller (Helm Version 2!):
-Helm version 2 included a component called Tiller, which was responsible for managing releases of Helm charts. 
-Tiller would install the chart on the Kubernetes cluster and maintain a record of the installed chart's configuration.
+<pre class="code-block">
+bash
+helm repo update
+</pre>
 
-Tiller was a security risk because it ran with administrative privileges and had access to the entire Kubernetes cluster. 
-In Helm version 3, Tiller was removed, and the responsibility for managing
+Install the WordPress chart using Helm:
+
+<pre class="code-block">
+bash
+helm install my-wordpress bitnami/wordpress
+</pre>
+
+This command will deploy the WordPress application on your Kubernetes cluster using the default configuration settings provided by the Helm chart.
+Verify that WordPress has been deployed successfully by running the following command:
+
+<pre class="code-block">
+bash
+kubectl get pods
+</pre>
+
+You should see one or more pods running the WordPress application.
+Access the WordPress application by running the following command:
+
+<pre class="code-block">
+bash
+kubectl port-forward svc/my-wordpress 8080:80
+</pre>
+
+This command will forward the port 80 of the my-wordpress service to port 8080 on your local machine. 
+You can now access the WordPress application by opening a web browser and navigating to http://localhost:8080.
+
+To upgrade WordPress to a newer version, run the following command:
+<pre class="code-block">
+bash
+helm upgrade my-wordpress bitnami/wordpress
+</pre>
+
+This command will upgrade the WordPress application to the latest version available in the Helm chart repository.
+To uninstall WordPress, run the following command:
+
+<pre class="code-block">
+bash
+helm uninstall my-wordpress
+</pre>
+
+This command will remove the WordPress application from your Kubernetes cluster.
+
+#### Conclusion
+In this demo report, we demonstrated how to use Helm to deploy and manage a sample application on a Kubernetes cluster. 
+Helm makes it easy to install, manage, and upgrade complex applications on Kubernetes clusters, and it is widely used in the Kubernetes community.
