@@ -1,3 +1,6 @@
+<details>
+ <summary><h3> Demo </h3></summary>
+
 In this demo, we will create a simple application that requires persistent storage and use K8s to deploy and manage the application. 
 We will use a PVC to dynamically provision storage for the application and a PV to represent the physical storage resource.
 
