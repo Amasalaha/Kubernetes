@@ -1,4 +1,5 @@
-## Demo: Configure Ingress in Minikube
+<details>
+ <summary><h3> Demo: Configure Ingress in Minikube </h3></summary>
 
 #### Introduction:
 In this demo, we will configure Ingress in Minikube, which is a popular tool for local Kubernetes development. 
